@@ -1,9 +1,7 @@
 const request = require('supertest');
-const auth = require('../../../routes/auth');
-const jwt = require('jsonwebtoken');
-const config = require('config');
 
 let server;
+let token;
 
 describe('auth middleware', () =>
 {

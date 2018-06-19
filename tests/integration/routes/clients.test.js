@@ -1,16 +1,17 @@
 const request = require('supertest');
-const auth = require('../../../routes/auth');
 const jwt = require('jsonwebtoken');
 const config = require('config');
 
 let server;
 let client;
+
 let clientFromJson = {
 	id: "44e44268-dce8-4902-b662-1b34d2c10b8e",
 	name: "Merrill",
 	email: "merrillblankenship@quotezart.com",
 	role: "user"
 };
+
 let policyFromJson = {
 	id: "7b624ed3-00d5-4c1b-9ab8-c265067ef58b",
 	amountInsured: 399.89,
@@ -44,7 +45,7 @@ describe('/api/client/id/:id', () =>
 
 	const exec = () =>
 	{
-		token = generateAuthToken(client);
+		const token = generateAuthToken(client);
 
 		return request(server)
 			.post('/api/client/id/' + clientFromJson.id)
@@ -94,7 +95,7 @@ describe('/api/client/name/:name', () =>
 
 	const exec = () =>
 	{
-		token = generateAuthToken(client);
+		const token = generateAuthToken(client);
 
 		return request(server)
 			.post('/api/client/name/' + clientFromJson.name)
@@ -144,7 +145,7 @@ describe('/api/client/policy/:policy', () =>
 
 	const exec = () =>
 	{
-		token = generateAuthToken(client);
+		const token = generateAuthToken(client);
 
 		return request(server)
 			.post('/api/client/policy/' + policyFromJson.id)

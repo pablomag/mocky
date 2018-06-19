@@ -1,6 +1,5 @@
 const winston = require('winston');
 const error = require('../middleware/error');
-const config = require('config');
 
 module.exports = function(app)
 {

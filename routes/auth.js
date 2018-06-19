@@ -11,22 +11,17 @@ router.post('/:id', async (req, res, next) =>
 	const id = req.params.id;
 
 	try {
-		await jsonData.getClients
-		.then(result =>
+		const clients = await jsonData.getClients;
+		const client = jsonData.getClientById(id, clients);
+
+		if (!client)
 		{
-			const clients = result;
-			const client = jsonData.getClientById(id, clients);
+			res.send('No client found');
+		} else {
 
-			if (!client)
-			{
-				res.send('No client found');
-			} else {
-
-				const token = generateAuthToken(client);
-				res.header('x-auth-token', token).send(token);
-			}
-		})
-		.catch(error =>	{ next(error); });
+			const token = generateAuthToken(client);
+			res.header('x-auth-token', token).send(token);
+		}
 	} catch (error) { next(error); }
 });
 

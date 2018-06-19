@@ -1,7 +1,7 @@
 const winston = require('winston');
 const rp = require('request-promise');
 
-const getClients = new Promise(async (resolve, reject) =>
+const getClients = new Promise((resolve) =>
 {
 	const options = {
 		uri: 'http://www.mocky.io/v2/5808862710000087232b75ac',
@@ -9,18 +9,16 @@ const getClients = new Promise(async (resolve, reject) =>
 		json: true
 	};
 
-	try {
-		await rp(options)
-			.then(res =>
-			{
-				winston.log('Client list retrieved');
-				resolve(res);
-			})
-			.catch(error => { winston.error(error, 'Could not connect to data source'); });
-	} catch (error) { reject(error); }
+	rp(options)
+		.then(res =>
+		{
+			winston.log('Client list retrieved');
+			resolve(res);
+		})
+		.catch(err => { winston.error(err, 'Could not connect to data source'); });
 });
 
-const getPolicies = new Promise(async (resolve, reject) =>
+const getPolicies = new Promise((resolve) =>
 {
 	const options = {
 		uri: 'http://www.mocky.io/v2/580891a4100000e8242b75c5',
@@ -28,15 +26,13 @@ const getPolicies = new Promise(async (resolve, reject) =>
 		json: true
 	};
 
-	try {
-		await rp(options)
-			.then(res =>
-			{
-				winston.log('Policies list retrieved');
-				resolve(res);
-			})
-			.catch(error => { winston.error('Could not connect to data source'); });
-	} catch (error) { reject(error); }
+	rp(options)
+		.then(res =>
+		{
+			winston.log('Policies list retrieved');
+			resolve(res);
+		})
+		.catch(err => { winston.error(err, 'Could not connect to data source'); });
 });
 
 function getPolicyById(id, data)

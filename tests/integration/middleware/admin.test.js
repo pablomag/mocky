@@ -1,5 +1,4 @@
 const request = require('supertest');
-const auth = require('../../../routes/auth');
 const jwt = require('jsonwebtoken');
 const config = require('config');
 
@@ -32,7 +31,7 @@ describe('auth middleware', () =>
 
 	const exec = () =>
 	{
-		token = generateAuthToken(client);
+		const token = generateAuthToken(client);
 
 		return request(server)
 			.post('/api/client/policy/' + policy.id)
