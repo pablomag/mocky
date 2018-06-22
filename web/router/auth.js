@@ -4,15 +4,15 @@ const router = express.Router();
 const jwt = require('jsonwebtoken');
 const config = require('config');
 
-const jsonData = require('../data/json_data');
+const Clients = require('../../client/index');
 
 router.post('/:id', async (req, res, next) =>
 {
 	const id = req.params.id;
 
 	try {
-		const clients = await jsonData.getClients;
-		const client = jsonData.getClientById(id, clients);
+		const queryClient = await Clients.getClients;
+		const client = Clients.getClientById(id, queryClient);
 
 		if (!client)
 		{

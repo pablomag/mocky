@@ -1,8 +1,8 @@
 const express = require('express');
 
-const auth = require('../routes/auth');
-const clients = require('../routes/clients');
-const policies = require('../routes/policies');
+const auth = require('../../web/router/auth');
+const clients = require('../../web/router/clients');
+const policies = require('../../web/router/policies');
 
 module.exports = function(app)
 {

@@ -2,13 +2,13 @@ const express = require('express');
 const app = express();
 
 /* Error logger */
-require('./startup/errors')(app);
+require('./config/components/errors')(app);
 
 /* Config */
-require('./startup/config')();
+require('./config/components/config')();
 
 /* Routes */
-require('./startup/routes')(app);
+require('./config/components/routes')(app);
 
 /* Server */
 const winston = require('winston');

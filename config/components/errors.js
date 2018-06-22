@@ -1,5 +1,5 @@
 const winston = require('winston');
-const error = require('../middleware/error');
+const error = require('../../web/middleware/error');
 
 module.exports = function(app)
 {
